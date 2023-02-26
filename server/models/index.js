@@ -7,6 +7,8 @@ const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.json')[env];
 const db = {};
+const Comments = require('./Comments');
+const Posts = require('./Posts');
 
 let sequelize;
 if (config.use_env_variable) {
@@ -33,5 +35,9 @@ Object.keys(db).forEach(modelName => {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
-
+db.Comments = Comments(sequelize, Sequelize);
+db.Posts = Posts(sequelize, Sequelize);
+db.Posts.hasMany(db.Comments,{
+  onDelete:"cascade",
+})
 module.exports = db;

@@ -6,7 +6,7 @@ import {useNavigate} from 'react-router-dom'
 
 
 function CreatePost() {
-    const {navigate} = useNavigate();
+    const navigate = useNavigate();
   
     const initialValues = {
         title: "",

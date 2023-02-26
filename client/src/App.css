@@ -157,3 +157,56 @@ span {
 #individual .body {
   font-size: 25px;
 }
+.comment-section {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin: 20px;
+}
+
+.comment-section h2 {
+  margin-top: 0;
+}
+
+.comment-section form {
+  margin-bottom: 20px;
+}
+
+.comment-section textarea {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: none;
+}
+
+.comment-section button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.comment-section button:hover {
+  background-color: #0069d9;
+}
+
+.comment-list {
+  margin-top: 20px;
+}
+
+.comment {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.comment h3 {
+  margin-top: 0;
+}
+
+.comment p {
+  margin-bottom: 0;
+}
