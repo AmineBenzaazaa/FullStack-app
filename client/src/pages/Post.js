@@ -1,24 +1,37 @@
 import React, { useEffect,useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams,useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 function Post() {
-    let {id} = useParams();
+    const {id} = useParams();
+    const navigate = useNavigate();
     const [post, setPost] = useState([]);
     const [comment, setComment] = useState('');
+    const [listComments, setListComments] = useState([])
 
     useEffect(()=>{
         axios.get(`http://localhost:3001/posts/byid/${id}`).then((response)=>{
             setPost(response.data);
         },[])
     })
-    const submitValue = () => {
+    useEffect(()=>{
+        axios.get(`http://localhost:3001/comments/${id}`).then((response)=>{
+            setListComments(response.data)
+            console.log(listComments);
+        })
+      },[])
+    const submitValue = (e) => {
+        e.preventDefault();
         const frmdetails = {
             'Comment' : comment,
+            'PostId' : id
         }
+        // return console.log(comment,id);
         axios.post("http://localhost:3001/comments", frmdetails).then((response)=>{
-            console.log("Data inserted successfully")
-            navigate("/")
+            console.log("Comment inserted successfully")
+            // const commentToAdd = {}
+            // setListComments([...listComments,])
+
         })
     }
     
@@ -33,25 +46,20 @@ function Post() {
                 </div>
             </div>
             <div className="rightSide">
-            <div class="comment-section">
+            <div className="comment-section">
                 <h2>Comments</h2>
-                <form>
+                <form >
                     <textarea name="comment" placeholder="Add a comment..." onChange={e => setComment(e.target.value) }></textarea>
                     <button onClick={submitValue}>Post</button>
                 </form>
-                <div class="comment-list">
-                    <div class="comment">
-                    <h3>User1</h3>
-                    <p>Comment1</p>
-                    </div>
-                    <div class="comment">
-                    <h3>User2</h3>
-                    <p>Comment2</p>
-                    </div>
-                    <div class="comment">
-                    <h3>User3</h3>
-                    <p>Comment3</p>
-                    </div>
+                <div className="comment-list" >
+                {
+                    listComments && listComments.length && listComments.map((value,key)=> {
+                        return <div className="comment" key={value.id}>
+                            <p>{value.Comment}</p>
+                        </div>
+                    })
+                }
                 </div>
                 </div>
 

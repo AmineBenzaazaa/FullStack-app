@@ -1,4 +1,5 @@
 const express = require("express");
+const { json } = require("sequelize");
 const router = express.Router();
 const { Comments } = require("../models");
 
@@ -10,8 +11,10 @@ router.get("/:postId", async (req, res) => {
 
 router.post("/", async (req, res) => {
   const comment = req.body;
+  // return console.log(req);
   await Comments.create(comment);
   res.json(comment);
 });
 
 module.exports = router;
+

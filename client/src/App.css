@@ -159,8 +159,7 @@ span {
 }
 .comment-section {
   border: 1px solid #ccc;
-  padding: 20px;
-  margin: 20px;
+  padding: 10% 33%;
 }
 
 .comment-section h2 {
@@ -181,7 +180,7 @@ span {
 }
 
 .comment-section button {
-  padding: 10px 20px;
+  padding: 10px 44.4%;
   background-color: #007bff;
   color: #fff;
   border: none;
@@ -194,12 +193,12 @@ span {
 }
 
 .comment-list {
-  margin-top: 20px;
+  margin-top: 0px;
 }
 
 .comment {
   border: 1px solid #ccc;
-  padding: 10px;
+  padding: 40px;
   margin-bottom: 10px;
 }
 
@@ -209,4 +208,31 @@ span {
 
 .comment p {
   margin-bottom: 0;
+}
+
+.comment-list {
+  height: 200px; /* Set a fixed height for the comment list */
+  overflow-y: scroll; /* Enable vertical scrolling */
+  max-height: 20rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin-right: 0.25rem;
+  
+}
+::-webkit-scrollbar-track {
+  border-radius: 0.125rem;
+  background-color: lightgray;
+}
+::-webkit-scrollbar {
+  width: 0.25rem;
+  border-radius: 0.125rem;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 0.125rem;
+  background-color: gray;
+}
+
+/* Display only the first 5 comments */
+.comment:nth-child(n+6) {
+  display: none;
 }
