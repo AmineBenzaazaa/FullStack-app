@@ -9,6 +9,7 @@ const config = require(__dirname + '/../config/config.json')[env];
 const db = {};
 const Comments = require('./Comments');
 const Posts = require('./Posts');
+const Users = require('./Users')
 
 let sequelize;
 if (config.use_env_variable) {
@@ -37,7 +38,10 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 db.Comments = Comments(sequelize, Sequelize);
 db.Posts = Posts(sequelize, Sequelize);
+db.Users = Users(sequelize, Sequelize)
 db.Posts.hasMany(db.Comments,{
   onDelete:"cascade",
 })
+db.Users.hasMany(db.Posts)
+
 module.exports = db;
